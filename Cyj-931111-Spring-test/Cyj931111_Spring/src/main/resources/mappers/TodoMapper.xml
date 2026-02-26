@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--인텔리제이에서, 해당 경로 복사, , 해당 파일 우클릭, 참조 경로/복사해서, 맨밑에 -->
+<!--구분자가 점으로 된걸 이용하기.-->
+<mapper namespace="com.busanit501.cyj931111_spring.spring.mapper._5_TodoMapper">
+    <select id="getTime" resultType="string">
+        select now()
+    </select>
+<!--    여러 개의 sql 문장을 여기에 등록할 예정-->
+<!--    insert 추가 작업 -->
+<!--    TodoMapper 인터페이스 안에 있는 메서드이름과 동일-->
+    <insert id="insert">
+        insert into tbl_todo (title, dueDate, writer, finished) values ( #{title}, #{dueDate}, #{writer}, #{finished})
+    </insert>
+
+    <select id="selectAll" resultType="com.busanit501.cyj931111_spring.spring.domain._1_TodoVO">
+        select * from tbl_todo order by tno desc
+    </select>
+
+    <select id="selectOne" resultType="com.busanit501.cyj931111_spring.spring.domain._1_TodoVO">
+        select * from tbl_todo where tno = #{tno}
+    </select>
+
+    <delete id="delete">
+        delete from tbl_todo where tno = #{tno}
+    </delete>
+
+    <update id="update">
+        update tbl_todo set title = #{title}, dueDate = #{dueDate}, finished = #{finished} where tno = #{tno}
+    </update>
+
+</mapper>
